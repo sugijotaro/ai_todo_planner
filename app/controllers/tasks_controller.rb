@@ -48,12 +48,14 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:title, :description, :due_date)
   end
-
   def create_sub_tasks(task)
-    # ChatGPT APIを呼び出し、サブタスクを生成するロジック
-    # 例: sub_tasks = call_chatgpt_api(task)
-    # sub_tasks.each do |sub_task_data|
-    #   task.sub_tasks.create(sub_task_data)
-    # end
+    Rails.logger.info "Generating sub-tasks for task: #{task.id}"
+    
+    sub_tasks_description = OpenaiClient.generate_sub_tasks(task.description)
+    Rails.logger.info "OpenAI API Response: #{sub_tasks_description}"
+  
+    sub_tasks_description.each do |description|
+      task.sub_tasks.create(title: "Sub Task", description: description)
+    end
   end
 end
