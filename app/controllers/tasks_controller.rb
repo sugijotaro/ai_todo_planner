@@ -38,6 +38,12 @@ class TasksController < ApplicationController
     redirect_to tasks_url, notice: 'タスクが正常に削除されました。'
   end
 
+  def complete
+    @task = Task.find(params[:id])
+    @task.update(completed: !@task.completed)
+    redirect_to tasks_path
+  end
+  
   private
 
   def set_task
