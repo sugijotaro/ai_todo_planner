@@ -50,7 +50,7 @@ class TasksController < ApplicationController
   end
   
   def create_sub_tasks(task)
-    sub_tasks_str = OpenaiClient.generate_sub_tasks(task.description)
+    sub_tasks_str = OpenaiClient.generate_sub_tasks(task.title, task.description)
     Rails.logger.info "OpenAI API Response: #{sub_tasks_str}"
     
     begin

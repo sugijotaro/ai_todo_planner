@@ -5,7 +5,7 @@ class OpenaiClient
   API_ENDPOINT = 'https://api.openai.com/v1/chat/completions'
   API_KEY = ENV['OPENAI_API_KEY']
 
-  def self.generate_sub_tasks(main_task_description)
+  def self.generate_sub_tasks(title, description)
     uri = URI(API_ENDPOINT)
     header = {
       'Content-Type' => 'application/json',
@@ -16,11 +16,11 @@ class OpenaiClient
       messages: [
         {
           "role": "system",
-          "content": "次のメインタスクに対して必要なサブタスクのリストを提案してください。サブタスクの内容は20文字以内の簡単な文字列を、json形式の配列で返してください。"
+          "content": "次のタスクに対して必要なサブタスクのリストを提案してください。サブタスクの内容は20文字以内の簡単な文字列を、json形式の配列で返してください。"
         },
         {
           "role": "user",
-          "content": main_task_description
+          "content": "#{title}（#{description}）"
         }
       ]
     }
