@@ -1,6 +1,7 @@
 <h1><%= @sub_task.content %></h1>
 
-<%= link_to (@sub_task.completed ? '未完了にする' : '完了にする'), complete_task_sub_task_path(@task, @sub_task), method: :put %>
-<br>
-<%= link_to '削除', [@task, @sub_task], method: :delete, data: { confirm: '本当に削除しますか？' } %>
-<%= link_to '戻る', task_path(@task) %>
+<span class="completed-mark"><%= link_to (@sub_task.completed ? '✅' : '🔲'), complete_task_sub_task_path(@task, @sub_task), method: :put %></span>
+<br><br>
+<%= link_to '削除', [@task, @sub_task], method: :delete, data: { confirm: '本当に削除しますか？' } , class: 'btn btn-danger' %>
+<br><br>
+<%= link_to '戻る', task_path(@task), class: 'btn btn-primary' %>

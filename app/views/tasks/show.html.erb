@@ -9,10 +9,10 @@
 <ul>
   <% @task.sub_tasks.each do |sub_task| %>
     <li>
-      <%= link_to (sub_task.completed ? '✅' : '◯'), complete_task_sub_task_path(@task, sub_task), method: :put %>
+      <span class="completed-mark"><%= link_to (sub_task.completed ? '✅' : '🔲'), complete_task_sub_task_path(@task, sub_task), method: :put %></span>
       <%= link_to sub_task.content, task_sub_task_path(@task, sub_task) %>
     </li>
   <% end %>
 </ul>
 
-<%= link_to '戻る', tasks_path %>
+<%= link_to '戻る', tasks_path, class: 'btn btn-primary' %>
