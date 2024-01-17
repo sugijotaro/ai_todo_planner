@@ -74,3 +74,7 @@ end
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'bootstrap', '~> 5.0.0'
+
+group :production do
+  gem "pg", "~> 1.4"
+end
