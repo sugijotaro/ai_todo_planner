@@ -39,6 +39,12 @@ class TasksController < ApplicationController
     redirect_to tasks_url, notice: 'Task was successfully destroyed.'
   end
 
+  def complete
+    @task = Task.find(params[:id])
+    @task.update(completed: !@task.completed)
+    redirect_to tasks_path
+  end
+  
   private
 
   def set_task
@@ -52,7 +58,7 @@ class TasksController < ApplicationController
   def create_sub_tasks(task)
     sub_tasks_str = OpenaiClient.generate_sub_tasks(task.title, task.description)
     Rails.logger.info "OpenAI API Response: #{sub_tasks_str}"
-    
+
     begin
       sub_tasks_array = JSON.parse(sub_tasks_str)
     rescue JSON::ParserError => e

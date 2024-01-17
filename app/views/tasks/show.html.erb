@@ -1,10 +1,16 @@
 <h1><%= @task.title %></h1>
 <p><%= @task.description %></p>
+<p>期限: <%= @task.due_date %></p>
+
+<%= link_to '削除', task_path(@task), method: :delete, data: { confirm: '本当に削除しますか？' } %>
 
 <h2>サブタスク</h2>
 <ul>
   <% @task.sub_tasks.each do |sub_task| %>
-    <li><%= sub_task.content %> (完了: <%= sub_task.completed ? 'はい' : 'いいえ' %>)</li>
+    <li>
+      <%= link_to (sub_task.completed ? '未完了にする' : '完了にする'), complete_task_sub_task_path(@task, sub_task), method: :put %>
+      <%= link_to sub_task.content, task_sub_task_path(@task, sub_task) %>
+    </li>
   <% end %>
 </ul>
 

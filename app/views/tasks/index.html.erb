@@ -1,13 +1,12 @@
-<h1>Tasks</h1>
-
-<%= link_to 'New Task', new_task_path %>
+<h1>AI ToDoリスト</h1>
+<%= link_to 'タスクを作成', new_task_path %>
 
 <ul>
   <% @tasks.each do |task| %>
     <li>
+      <%= link_to (task.completed ? '未完了にする' : '完了にする'), complete_task_path(task), method: :put, data: { confirm: 'このタスクにはサブタスクがあります。サブタスクも実行済みになります。' } %>
       <%= link_to task.title, task_path(task) %>
-      | <%= link_to 'Edit', edit_task_path(task) %>
-      | <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+      （未完了のサブタスク: <%= task.sub_tasks.where(completed: false).count %>）
     </li>
   <% end %>
 </ul>

@@ -9,7 +9,13 @@ class SubTasksController < ApplicationController
     @sub_task.destroy
     redirect_to task_path(@task), notice: 'Sub-task was successfully destroyed.'
   end
-
+  
+  def complete
+    @sub_task = SubTask.find(params[:id])
+    @sub_task.update(completed: !@sub_task.completed)
+    redirect_to task_path(@sub_task.task)
+  end
+  
   private
 
   def set_task

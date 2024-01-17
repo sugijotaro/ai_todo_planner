@@ -1,6 +1,4 @@
-<h1><%= @sub_task.title %></h1>
-<p><%= @sub_task.description %></p>
-<p><%= @sub_task.due_date %></p>
+<h1><%= @sub_task.content %></h1>
 
 <%= link_to 'Destroy', [@task, @sub_task], method: :delete, data: { confirm: 'Are you sure?' } %>
 | <%= link_to 'Back', task_path(@task) %>
