@@ -1,6 +1,11 @@
 <h1><%= @task.title %></h1>
 <p><%= @task.description %></p>
-<p><%= @task.due_date %></p>
 
-<%= link_to 'Edit', edit_task_path(@task) %>
-| <%= link_to 'Back', tasks_path %>
+<h2>サブタスク</h2>
+<ul>
+  <% @task.sub_tasks.each do |sub_task| %>
+    <li><%= sub_task.title %> (完了: <%= sub_task.completed ? 'はい' : 'いいえ' %>)</li>
+  <% end %>
+</ul>
+
+<%= link_to '戻る', tasks_path %>

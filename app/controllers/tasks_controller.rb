@@ -48,14 +48,20 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:title, :description, :due_date)
   end
-  def create_sub_tasks(task)
-    Rails.logger.info "Generating sub-tasks for task: #{task.id}"
-    
-    sub_tasks_description = OpenaiClient.generate_sub_tasks(task.description)
-    Rails.logger.info "OpenAI API Response: #{sub_tasks_description}"
   
-    sub_tasks_description.each do |description|
-      task.sub_tasks.create(title: "Sub Task", description: description)
+  def create_sub_tasks(task)
+    sub_tasks_str = OpenaiClient.generate_sub_tasks(task.description)
+    Rails.logger.info "OpenAI API Response: #{sub_tasks_str}"
+
+    begin
+      sub_tasks_array = JSON.parse(sub_tasks_str)
+    rescue JSON::ParserError => e
+      Rails.logger.error "JSON Parsing error: #{e.message}"
+      return
+    end
+
+    sub_tasks_array.each do |sub_task_title|
+      task.sub_tasks.create(title: sub_task_title, completed: false)
     end
   end
 end
