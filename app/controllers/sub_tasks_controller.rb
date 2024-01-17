@@ -7,7 +7,7 @@ class SubTasksController < ApplicationController
 
   def destroy
     @sub_task.destroy
-    redirect_to task_path(@task), notice: 'Sub-task was successfully destroyed.'
+    redirect_to task_path(@task), notice: 'サブタスクが正常に削除されました。'
   end
   
   def complete

@@ -19,7 +19,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.save
       create_sub_tasks(@task)
-      redirect_to @task, notice: 'Task was successfully created.'
+      redirect_to @task, notice: 'タスクが正常に作成されました。'
     else
       render :new
     end
@@ -27,8 +27,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      # ここでサブタスクの更新または再生成を行う
-      redirect_to @task, notice: 'Task was successfully updated.'
+      redirect_to @task, notice: 'タスクが正常に更新されました。'
     else
       render :edit
     end
@@ -36,15 +35,9 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_url, notice: 'Task was successfully destroyed.'
+    redirect_to tasks_url, notice: 'タスクが正常に削除されました。'
   end
 
-  def complete
-    @task = Task.find(params[:id])
-    @task.update(completed: !@task.completed)
-    redirect_to tasks_path
-  end
-  
   private
 
   def set_task
