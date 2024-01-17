@@ -1,17 +1,16 @@
 databases:
   - name: ai_todo_planner
-    databaseName: ai_todo_planner_sql
-    user: ai_todo_planner_sql_user
-    region: singapore
+    databaseName: ai_todo_planner
+    user: ai_todo_planner
+    plan: free
 
 services:
   - type: web
     name: ai_todo_planner
-    env: ruby
-    region: singapore
+    runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
-    startCommand: "bundle exec puma -C config/puma.rb"
+    startCommand: "./bin/rails server"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -19,3 +18,5 @@ services:
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
+      - key: WEB_CONCURRENCY
+        value: 2
