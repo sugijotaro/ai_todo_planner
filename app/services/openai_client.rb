@@ -1,8 +1,7 @@
 require 'net/http'
 require 'json'
-
 class OpenaiClient
-  API_ENDPOINT = 'https://api.openai.com/v1/engines/davinci/completions'
+  API_ENDPOINT = 'https://api.openai.com/v1/chat/completions'
   API_KEY = ENV['OPENAI_API_KEY']
 
   def self.generate_sub_tasks(main_task_description)
@@ -12,8 +11,13 @@ class OpenaiClient
       'Authorization' => "Bearer #{API_KEY}"
     }
     body = {
-      prompt: main_task_description,
-      max_tokens: 50
+      model: 'gpt-3.5-turbo',
+      messages: [
+        {
+          "role": "user",
+          "content": main_task_description
+        }
+      ]
     }
 
     http = Net::HTTP.new(uri.host, uri.port)
@@ -28,7 +32,7 @@ class OpenaiClient
     Rails.logger.info "OpenAI API Response Body: #{response.body}"
 
     if response.is_a?(Net::HTTPSuccess)
-      JSON.parse(response.body)['choices'].first['text'].strip
+      JSON.parse(response.body)['choices'].first['message']['content'].strip
     else
       []
     end
