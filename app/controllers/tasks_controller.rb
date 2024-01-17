@@ -52,7 +52,7 @@ class TasksController < ApplicationController
   def create_sub_tasks(task)
     sub_tasks_str = OpenaiClient.generate_sub_tasks(task.description)
     Rails.logger.info "OpenAI API Response: #{sub_tasks_str}"
-
+    
     begin
       sub_tasks_array = JSON.parse(sub_tasks_str)
     rescue JSON::ParserError => e
@@ -60,8 +60,8 @@ class TasksController < ApplicationController
       return
     end
 
-    sub_tasks_array.each do |sub_task_title|
-      task.sub_tasks.create(title: sub_task_title, completed: false)
+    sub_tasks_array.each do |sub_task_content|
+      task.sub_tasks.create(content: sub_task_content, completed: false)
     end
   end
 end
