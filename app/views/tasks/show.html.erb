@@ -4,7 +4,7 @@
 <h2>サブタスク</h2>
 <ul>
   <% @task.sub_tasks.each do |sub_task| %>
-    <li><%= sub_task.title %> (完了: <%= sub_task.completed ? 'はい' : 'いいえ' %>)</li>
+    <li><%= sub_task.content %> (完了: <%= sub_task.completed ? 'はい' : 'いいえ' %>)</li>
   <% end %>
 </ul>
 
