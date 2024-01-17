@@ -4,6 +4,7 @@ AI ToDo プランナーは、タスクの完了を促進するためのWebサー
 
 メインのタスクを入力するだけで、自動的にサブタスクが作成されるので、やるべきことの解像度が高まり、タスクに取り組みやすくなります。
 
+https://github.com/sugijotaro/ai_todo_planner/assets/52352924/a51bb1f6-b684-456c-9236-0defd2723e49
 
 [こちら](https://ai-todo-planner.onrender.com/)から試すことができます。（Renderのデータベース無料期間が90日なので、2024年4月以降は使用できない可能性があります。）
 
@@ -17,16 +18,23 @@ AI ToDo プランナーは、タスクの完了を促進するためのWebサー
 
 ### タスクの追加
 
-- ホームページから「+ タスクを作成」ボタンをクリックして、新しいタスクを追加します。
+<img src="https://github.com/sugijotaro/ai_todo_planner/assets/52352924/76386875-bda6-44ec-b8c9-d0435ec4c6ee" width="30%">
+<img src="https://github.com/sugijotaro/ai_todo_planner/assets/52352924/7d5f72bf-65ef-42e1-9680-0efc1da89922" width="30%">
+
+- タスク一覧ページから「+ タスクを作成」ボタンをクリックして、新しいタスクを追加します。
 - タスクのタイトルと詳細を入力し、期限を設定します。
 - 「タスクを作成」ボタンをクリックすると、タスクがリストに追加されます。
 
 ### サブタスクの活用
 
+<img src="https://github.com/sugijotaro/ai_todo_planner/assets/52352924/747bfeaf-1502-4e05-b67e-c1a320552ae0" width="30%">
+
 - タスクを作成すると、AIが自動的に関連するサブタスクを生成します。
 - サブタスクもメインタスクと同様に管理できます。
 
 ### タスクの管理
+
+<img src="https://github.com/sugijotaro/ai_todo_planner/assets/52352924/1982cbe1-39bc-4fdd-942e-603832859a37" width="30%">
 
 - メインページで、すべてのタスクが一覧で表示されます。
 - 各タスクには、そのタスクの状態（完了/未完了）を変更するためのボタンがあります。
