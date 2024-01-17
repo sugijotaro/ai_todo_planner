@@ -1,7 +1,7 @@
 <%= form_with(model: task, local: true) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <h2><%= pluralize(task.errors.count, "個のエラー") %> を修正してください:</h2>
 
       <ul>
         <% task.errors.full_messages.each do |message| %>
@@ -12,21 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :title, "タイトル" %>
     <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :description, "説明文" %>
     <%= form.text_area :description %>
   </div>
 
   <div class="field">
-    <%= form.label :due_date %>
+    <%= form.label :due_date, "期限" %>
     <%= form.date_select :due_date %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit task.new_record? ? 'タスクを作成' : 'タスクを更新' %>
   </div>
 <% end %>

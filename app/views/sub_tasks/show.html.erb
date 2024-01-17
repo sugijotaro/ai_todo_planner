@@ -1,4 +1,4 @@
 <h1><%= @sub_task.content %></h1>
 
-<%= link_to 'Destroy', [@task, @sub_task], method: :delete, data: { confirm: 'Are you sure?' } %>
-| <%= link_to 'Back', task_path(@task) %>
+<%= link_to '削除', [@task, @sub_task], method: :delete, data: { confirm: '本当に削除しますか？' } %>
+| <%= link_to '戻る', task_path(@task) %>
