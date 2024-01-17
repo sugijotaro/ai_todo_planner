@@ -9,7 +9,7 @@
 <ul>
   <% @task.sub_tasks.each do |sub_task| %>
     <li>
-      <%= link_to (sub_task.completed ? '未完了にする' : '完了にする'), complete_task_sub_task_path(@task, sub_task), method: :put %>
+      <%= link_to (sub_task.completed ? '✅' : '◯'), complete_task_sub_task_path(@task, sub_task), method: :put %>
       <%= link_to sub_task.content, task_sub_task_path(@task, sub_task) %>
     </li>
   <% end %>
