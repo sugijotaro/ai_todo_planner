@@ -2,6 +2,13 @@ body {
   background-color: #f0f8f0;
   font-family: Arial, sans-serif;
   color: #333;
+  padding: 0 15px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
 
 h1,
