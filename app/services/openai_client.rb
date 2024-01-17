@@ -1,5 +1,6 @@
 require 'net/http'
 require 'json'
+
 class OpenaiClient
   API_ENDPOINT = 'https://api.openai.com/v1/chat/completions'
   API_KEY = ENV['OPENAI_API_KEY']
@@ -13,6 +14,10 @@ class OpenaiClient
     body = {
       model: 'gpt-3.5-turbo',
       messages: [
+        {
+          "role": "system",
+          "content": "次のメインタスクに対して必要なサブタスクのリストを提案してください。サブタスクの内容は20文字以内の簡単な文字列を、json形式の配列で返してください。"
+        },
         {
           "role": "user",
           "content": main_task_description
@@ -32,7 +37,12 @@ class OpenaiClient
     Rails.logger.info "OpenAI API Response Body: #{response.body}"
 
     if response.is_a?(Net::HTTPSuccess)
-      JSON.parse(response.body)['choices'].first['message']['content'].strip
+      response_data = JSON.parse(response.body)
+      if response_data['choices'] && response_data['choices'].first['message']
+        response_data['choices'].first['message']['content'].strip
+      else
+        []
+      end
     else
       []
     end
